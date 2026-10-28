@@ -42,4 +42,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: esp32-firmware
-        path: ${{github.workspace}}/bluebomb_micro/ports/esp32/build_*/bluebomb_micro.bin
+        path: ${{github.workspace}}/bluebomb_micro/ports/esp32/build_*/bluebomb.bin
