@@ -63,7 +63,7 @@ static void heartbeat_handler(struct btstack_timer_source *ts)
     btstack_run_loop_add_timer(ts);
 }
 
-int app_main(void)
+void app_main(void)
 {
 #if BLINK_ENABLE
     // Set up the LED
@@ -90,6 +90,4 @@ int app_main(void)
 
     // Enter run loop (forever)
     btstack_run_loop_execute();
-
-    return 0;
 }
