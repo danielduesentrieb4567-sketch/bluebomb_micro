@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: espressif/esp-idf
-        ref: master
+        ref: v5.3.2
         path: esp-idf
         submodules: recursive
 
@@ -32,8 +32,14 @@ jobs:
         . ${{github.workspace}}/esp-idf/export.sh
         ./integrate_btstack.py
 
-    - name: Build target
+    - name: Build all targets
       run: |
         cd ${{github.workspace}}/bluebomb_micro/ports/esp32
         . ${{github.workspace}}/esp-idf/export.sh
-        idf.py build -DBLUEBOMB_TARGET="WII_SM4_3J"
+        bash build_all.sh
+
+    - name: Upload firmware artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: esp32-firmware
+        path: ${{github.workspace}}/bluebomb_micro/ports/esp32/build_*/bluebomb_micro.bin
